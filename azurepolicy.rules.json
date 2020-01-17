@@ -1,38 +1,40 @@
 {
-   "type": "Microsoft.Authorization/policyDefinitions",
-   "name": "platform-image-policy",
-   "properties": {
-      "displayName": "Only allow a certain VM platform image",
-      "description": "This policy ensures that only PublisherJP, is allowed from the image repository",
-      "parameters": {},
-      "policyRule": {
-         "if": {
-            "allOf": [
-               {
-                  "field": "type",
-                  "in": [
-                     "Microsoft.Compute/disks",
-                     "Microsoft.Compute/virtualMachines",
-                     "Microsoft.Compute/VirtualMachineScaleSets"
-                  ]
-               },
-               {
-                  "not": {
-                     "allOf": [
-                        {
-                           "field": "Microsoft.Compute/imagePublisher",
-                           "in": [
-                              "PublisherJP"
-                           ]
-                        }                        
+    "type": "Microsoft.Authorization/policyDefinitions",
+    "name": "platform-image-policy",
+    "apiVersion": "2019-06-01",
+    "properties": {
+        "mode": "All",
+        "displayName": "Only allow a certain VM platform image",
+        "description": "This policy ensures that only PublisherJP, is allowed from the image repository",
+        "parameters": {},
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "in": [
+                            "Microsoft.Compute/disks",
+                            "Microsoft.Compute/virtualMachines",
+                            "Microsoft.Compute/VirtualMachineScaleSets"
                         ]
-                  }
-               }
-            ]
-         },
-         "then": {
-            "effect": "deny"
-         }
-      }
-   }
+                    },
+                    {
+                        "not": {
+                            "allOf": [
+                                {
+                                    "field": "Microsoft.Compute/imagePublisher",
+                                    "in": [
+                                        "PublisherJP"
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "then": {
+                "effect": "deny"
+            }
+        }
+    }
 }
