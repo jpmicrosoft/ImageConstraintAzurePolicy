@@ -4,9 +4,10 @@
     "apiVersion": "2019-06-01",
     "properties": {
         "mode": "All",
+        "parameters": {
         "displayName": "Only allow a certain VM platform image",
-        "description": "This policy ensures that only PublisherJP, is allowed from the image repository",
-        "parameters": {},
+        "description": "This policy ensures that only PublisherJP, is allowed from the image repository"
+        },
         "policyRule": {
             "if": {
                 "allOf": [
